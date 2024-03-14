@@ -304,17 +304,48 @@ type
 
 ## ! Array of Box
 
-type
-  Boxa* {.importc: "struct Boxa", bycopy.} = object
-    n* {.importc: "n".}: LInt32
-    ## !< number of box in ptr array
-    nalloc* {.importc: "nalloc".}: LInt32
-    ## !< number of box ptrs allocated
-    refcount* {.importc: "refcount".}: LAtomic
-    ## !< reference count (1 if no clones)
-    box* {.importc: "box".}: ptr ptr Box
-    ## !< box ptr array
+# type
+#   Boxa* {.importc: "struct Boxa", bycopy.} = object
+#     n* {.importc: "n".}: LInt32
+#     ## !< number of box in ptr array
+#     nalloc* {.importc: "nalloc".}: LInt32
+#     ## !< number of box ptrs allocated
+#     refcount* {.importc: "refcount".}: LAtomic
+#     ## !< reference count (1 if no clones)
+#     box* {.importc: "box".}: ptr ptr Box
+#     ## !< box ptr array
 
+type
+  Boxa*   = object # {.importc: "struct Boxa", bycopy.} 
+    n* : LInt32
+    ## !< number of box in ptr array
+    nalloc* : LInt32
+    ## !< number of box ptrs allocated
+    refcount* : LAtomic
+    ## !< reference count (1 if no clones)
+    box* : ptr ptr Box
+    ## !< box ptr array
+    ## 
+#[
+struct Pixa
+{
+    l_int32             n;          /*!< number of Pix in ptr array        */
+    l_int32             nalloc;     /*!< number of Pix ptrs allocated      */
+    l_atomic            refcount;   /*!< reference count (1 if no clones)  */
+    struct Pix        **pix;        /*!< the array of ptrs to pix          */
+    struct Boxa        *boxa;       /*!< array of boxes                    */
+};
+]#
+# type
+#   Boxa* {.importc: "struct Boxa", bycopy.}  = object # {.importc: "struct Boxa", bycopy.} 
+#     n* : cint
+#     ## !< number of box in ptr array
+#     nalloc* : cint
+#     ## !< number of box ptrs allocated
+#     refcount* : LAtomic
+#     ## !< reference count (1 if no clones)
+#     box* : ptr ptr Box
+#     ## !< box ptr array
 
 ## ! Array of Boxa
 

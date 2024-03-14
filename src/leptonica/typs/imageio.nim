@@ -1,5 +1,5 @@
 {.experimental: "codeReordering".}
-import environ, ptra, pix
+import environ#, ptra#, pix
 ## ====================================================================*
 ##  -  Copyright (C) 2001 Leptonica.  All rights reserved.
 ##  -

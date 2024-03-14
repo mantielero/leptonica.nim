@@ -1,3 +1,4 @@
+{.push header:"environ.h".}
 ## ====================================================================*
 ##  -  Copyright (C) 2001 Leptonica.  All rights reserved.
 ##  -
@@ -213,7 +214,7 @@ type
 ## !< signed 8-bit value
 
 type
-  LUint8* = cuchar
+  LUint8* = uint8
 
 ## !< unsigned 8-bit value
 
@@ -649,3 +650,4 @@ var leptMsgSeverity* {.importc: "LeptMsgSeverity", header: "environ.h".}: LInt32
 # when defined(msc_Ver) and msc_Ver < 1900:
 #   template snprintf*(buf, size: untyped; xargs: varargs[untyped]): untyped =
 #     snprintfS(buf, size, truncate, va_Args)
+{.pop.}

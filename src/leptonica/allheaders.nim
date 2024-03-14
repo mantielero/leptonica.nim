@@ -436,8 +436,11 @@ proc lBootnumGen1*(): ptr Pixa {.importc: "l_bootnum_gen1".}
 proc lBootnumGen2*(): ptr Pixa {.importc: "l_bootnum_gen2".}
 proc lBootnumGen3*(): ptr Pixa {.importc: "l_bootnum_gen3".}
 proc lBootnumGen4*(nsamp: LInt32): ptr Pixa {.importc: "l_bootnum_gen4".}
+
+#--
 proc boxCreate*(x: LInt32; y: LInt32; w: LInt32; h: LInt32): ptr Box {.
     importc: "boxCreate".}
+    
 proc boxCreateValid*(x: LInt32; y: LInt32; w: LInt32; h: LInt32): ptr Box {.
     importc: "boxCreateValid".}
 proc boxCopy*(box: ptr Box): ptr Box {.importc: "boxCopy".}
@@ -454,10 +457,15 @@ proc boxGetSideLocations*(box: ptr Box; pl: ptr LInt32; pr: ptr LInt32;
 proc boxSetSideLocations*(box: ptr Box; l: LInt32; r: LInt32; t: LInt32;
                           b: LInt32): LOk {.importc: "boxSetSideLocations".}
 proc boxIsValid*(box: ptr Box; pvalid: ptr LInt32): LOk {.importc: "boxIsValid".}
+
+#----
 proc boxaCreate*(n: LInt32): ptr Boxa {.importc: "boxaCreate".}
+
 proc boxaCopy*(boxa: ptr Boxa; copyflag: LInt32): ptr Boxa {.
     importc: "boxaCopy".}
+
 proc boxaDestroy*(pboxa: ptr ptr Boxa) {.importc: "boxaDestroy".}
+
 proc boxaAddBox*(boxa: ptr Boxa; box: ptr Box; copyflag: LInt32): LOk {.
     importc: "boxaAddBox".}
 proc boxaExtendArray*(boxa: ptr Boxa): LOk {.importc: "boxaExtendArray".}
@@ -476,6 +484,8 @@ proc boxaGetBoxGeometry*(boxa: ptr Boxa; index: LInt32; px: ptr LInt32;
     importc: "boxaGetBoxGeometry".}
 proc boxaIsFull*(boxa: ptr Boxa; pfull: ptr LInt32): LOk {.
     importc: "boxaIsFull".}
+
+
 proc boxaReplaceBox*(boxa: ptr Boxa; index: LInt32; box: ptr Box): LOk {.
     importc: "boxaReplaceBox".}
 proc boxaInsertBox*(boxa: ptr Boxa; index: LInt32; box: ptr Box): LOk {.
@@ -487,7 +497,11 @@ proc boxaRemoveBoxAndSave*(boxa: ptr Boxa; index: LInt32; pbox: ptr ptr Box): LO
 proc boxaSaveValid*(boxas: ptr Boxa; copyflag: LInt32): ptr Boxa {.
     importc: "boxaSaveValid".}
 proc boxaInitFull*(boxa: ptr Boxa; box: ptr Box): LOk {.importc: "boxaInitFull".}
+
+
 proc boxaClear*(boxa: ptr Boxa): LOk {.importc: "boxaClear".}
+#----
+
 proc boxaaCreate*(n: LInt32): ptr Boxaa {.importc: "boxaaCreate".}
 proc boxaaCopy*(baas: ptr Boxaa; copyflag: LInt32): ptr Boxaa {.
     importc: "boxaaCopy".}
@@ -528,6 +542,7 @@ proc boxaaWriteStream*(fp: ptr File; baa: ptr Boxaa): LOk {.
     importc: "boxaaWriteStream".}
 proc boxaaWriteMem*(pdata: ptr ptr LUint8; psize: ptr csize_t; baa: ptr Boxaa): LOk {.
     importc: "boxaaWriteMem".}
+
 proc boxaRead*(filename: cstring): ptr Boxa {.importc: "boxaRead".}
 proc boxaReadStream*(fp: ptr File): ptr Boxa {.importc: "boxaReadStream".}
 proc boxaReadMem*(data: ptr LUint8; size: csize_t): ptr Boxa {.
@@ -540,12 +555,15 @@ proc boxaWriteStream*(fp: ptr File; boxa: ptr Boxa): LOk {.
 proc boxaWriteStderr*(boxa: ptr Boxa): LOk {.importc: "boxaWriteStderr".}
 proc boxaWriteMem*(pdata: ptr ptr LUint8; psize: ptr csize_t; boxa: ptr Boxa): LOk {.
     importc: "boxaWriteMem".}
+
+
 proc boxPrintStreamInfo*(fp: ptr File; box: ptr Box): LOk {.
     importc: "boxPrintStreamInfo".}
 proc boxContains*(box1: ptr Box; box2: ptr Box; presult: ptr LInt32): LOk {.
     importc: "boxContains".}
 proc boxIntersects*(box1: ptr Box; box2: ptr Box; presult: ptr LInt32): LOk {.
     importc: "boxIntersects".}
+
 proc boxaContainedInBox*(boxas: ptr Boxa; box: ptr Box): ptr Boxa {.
     importc: "boxaContainedInBox".}
 proc boxaContainedInBoxCount*(boxa: ptr Boxa; box: ptr Box; pcount: ptr LInt32): LOk {.
@@ -565,6 +583,8 @@ proc boxaCombineOverlapsInPair*(boxas1: ptr Boxa; boxas2: ptr Boxa;
                                 pboxad1: ptr ptr Boxa; pboxad2: ptr ptr Boxa;
                                 pixadb: ptr Pixa): LOk {.
     importc: "boxaCombineOverlapsInPair".}
+
+
 proc boxOverlapRegion*(box1: ptr Box; box2: ptr Box): ptr Box {.
     importc: "boxOverlapRegion".}
 proc boxBoundingRegion*(box1: ptr Box; box2: ptr Box): ptr Box {.
@@ -573,6 +593,8 @@ proc boxOverlapFraction*(box1: ptr Box; box2: ptr Box; pfract: ptr LFloat32): LO
     importc: "boxOverlapFraction".}
 proc boxOverlapArea*(box1: ptr Box; box2: ptr Box; parea: ptr LInt32): LOk {.
     importc: "boxOverlapArea".}
+
+
 proc boxaHandleOverlaps*(boxas: ptr Boxa; op: LInt32; range: LInt32;
                          minOverlap: LFloat32; maxRatio: LFloat32;
                          pnamap: ptr ptr Numa): ptr Boxa {.
@@ -587,6 +609,7 @@ proc boxCompareSize*(box1: ptr Box; box2: ptr Box; `type`: LInt32;
                      prel: ptr LInt32): LOk {.importc: "boxCompareSize".}
 proc boxContainsPt*(box: ptr Box; x: LFloat32; y: LFloat32;
                     pcontains: ptr LInt32): LOk {.importc: "boxContainsPt".}
+
 proc boxaGetNearestToPt*(boxa: ptr Boxa; x: LInt32; y: LInt32): ptr Box {.
     importc: "boxaGetNearestToPt".}
 proc boxaGetNearestToLine*(boxa: ptr Boxa; x: LInt32; y: LInt32): ptr Box {.
