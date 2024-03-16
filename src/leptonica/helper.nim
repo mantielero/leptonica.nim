@@ -11,6 +11,16 @@ proc `=destroy`*(self: BoxItem) =
 proc newBoxItem*(x,y,w,h:int32):BoxItem =
   result.handle = boxCreate(x.LInt32, y.LInt32, w.LInt32, h.LInt32)
 
+
+proc newBoxItem*(val:ptr Box): BoxItem =
+  result.handle = val
+
+proc getGeometry*(self:BoxItem):tuple[x,y,w,h:int] =
+  var x,y,w,h:LInt32
+  var ok = self.handle.boxGetGeometry(x.unsafeAddr,y.unsafeAddr,w.unsafeAddr,h.unsafeAddr)
+  echo ok
+  return (x.int, y.int, w.int, h.int)
+
 #------
 type
   BoxArray* = object
@@ -33,3 +43,5 @@ proc add*(self: BoxArray; b: BoxItem) =
   echo tmp
   #if tmp != LOk:
   #  raise newException(ValueError, "failed adding a box in a box array")
+
+#----

@@ -18,3 +18,4 @@ ba.add(b1)
 ba.add(b1)
 ba.add(b1)
 echo ba.len
+

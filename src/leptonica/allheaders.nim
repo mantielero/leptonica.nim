@@ -440,7 +440,7 @@ proc lBootnumGen4*(nsamp: LInt32): ptr Pixa {.importc: "l_bootnum_gen4".}
 #--
 proc boxCreate*(x: LInt32; y: LInt32; w: LInt32; h: LInt32): ptr Box {.
     importc: "boxCreate".}
-    
+
 proc boxCreateValid*(x: LInt32; y: LInt32; w: LInt32; h: LInt32): ptr Box {.
     importc: "boxCreateValid".}
 proc boxCopy*(box: ptr Box): ptr Box {.importc: "boxCopy".}
@@ -473,8 +473,10 @@ proc boxaExtendArrayToSize*(boxa: ptr Boxa; size: csize_t): LOk {.
     importc: "boxaExtendArrayToSize".}
 proc boxaGetCount*(boxa: ptr Boxa): LInt32 {.importc: "boxaGetCount".}
 proc boxaGetValidCount*(boxa: ptr Boxa): LInt32 {.importc: "boxaGetValidCount".}
+
 proc boxaGetBox*(boxa: ptr Boxa; index: LInt32; accessflag: LInt32): ptr Box {.
     importc: "boxaGetBox".}
+
 proc boxaGetValidBox*(boxa: ptr Boxa; index: LInt32; accessflag: LInt32): ptr Box {.
     importc: "boxaGetValidBox".}
 proc boxaFindInvalidBoxes*(boxa: ptr Boxa): ptr Numa {.

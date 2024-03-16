@@ -2,7 +2,7 @@ import std/os
 
 # Package
 
-version     = "0.0.1"
+version     = "0.0.2"
 author      = "Jose Maria Garcia"
 description = "Leptonica bindings"
 license     = "MIT"
